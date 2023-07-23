@@ -18,20 +18,17 @@ package controllers
 
 import (
 	"context"
-	"fmt"
-	v1 "k8s.io/api/core/v1"
-	v12 "k8s.io/apimachinery/pkg/apis/meta/v1"
+
 	"k8s.io/apimachinery/pkg/runtime"
 	ctrl "sigs.k8s.io/controller-runtime"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 	"sigs.k8s.io/controller-runtime/pkg/log"
 
-	appsv1 "github.com/noonme/demo-operator/api/v1"
-	//appsv2 "github.com/cncamp/demo-operator/api/v1"
+	appsv1beta1 "github.com/noonme/demo-operator/api/v1beta1"
 )
 
-// MyDaemonsetReconciler reconciles a MyDaemonset object
-type MyDaemonsetReconciler struct {
+// MyDaemonSetReconciler reconciles a MyDaemonSet object
+type MyDaemonSetReconciler struct {
 	client.Client
 	Scheme *runtime.Scheme
 }
@@ -43,56 +40,23 @@ type MyDaemonsetReconciler struct {
 // Reconcile is part of the main kubernetes reconciliation loop which aims to
 // move the current state of the cluster closer to the desired state.
 // TODO(user): Modify the Reconcile function to compare the state specified by
-// the MyDaemonset object against the actual cluster state, and then
+// the MyDaemonSet object against the actual cluster state, and then
 // perform operations to make the cluster state reflect the state specified by
 // the user.
 //
 // For more details, check Reconcile and its Result here:
 // - https://pkg.go.dev/sigs.k8s.io/controller-runtime@v0.10.0/pkg/reconcile
-func (r *MyDaemonsetReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Result, error) {
+func (r *MyDaemonSetReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Result, error) {
 	_ = log.FromContext(ctx)
 
-	myds := &appsv1.MyDaemonset{}
-	if err := r.Client.Get(ctx, req.NamespacedName, myds); err != nil {
-		fmt.Println(err)
-	}
-	nl := &v1.NodeList{}
-	if myds.Spec.Image != "" {
-		if err := r.Client.List(ctx, nl); err != nil {
-			fmt.Println(err)
-		}
-		for _, n := range nl.Items {
-			p := v1.Pod{
-				TypeMeta: v12.TypeMeta{
-					APIVersion: "v1",
-					Kind:       "Pod",
-				},
-				ObjectMeta: v12.ObjectMeta{
-					GenerateName: fmt.Sprintf("%s-", n.Name),
-					Namespace:    myds.Namespace,
-				},
-				Spec: v1.PodSpec{
-					Containers: []v1.Container{
-						{
-							Image: myds.Spec.Image,
-							Name:  "container",
-						},
-					},
-					NodeName: n.Name,
-				},
-			}
-			if err := r.Client.Create(ctx, &p); err != nil {
-				fmt.Println(err)
-			}
-		}
-	}
+	// TODO(user): your logic here
 
 	return ctrl.Result{}, nil
 }
 
 // SetupWithManager sets up the controller with the Manager.
-func (r *MyDaemonsetReconciler) SetupWithManager(mgr ctrl.Manager) error {
+func (r *MyDaemonSetReconciler) SetupWithManager(mgr ctrl.Manager) error {
 	return ctrl.NewControllerManagedBy(mgr).
-		For(&appsv1.MyDaemonset{}).
+		For(&appsv1beta1.MyDaemonSet{}).
 		Complete(r)
 }

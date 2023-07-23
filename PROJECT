@@ -10,7 +10,7 @@ resources:
   controller: true
   domain: opsblogs.cn
   group: apps
-  kind: MyDaemonset
-  path: github.com/noonme/demo-operator/api/v1
-  version: v1
+  kind: MyDaemonSet
+  path: github.com/noonme/demo-operator/api/v1beta1
+  version: v1beta1
 version: "3"

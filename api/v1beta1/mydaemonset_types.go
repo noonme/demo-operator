@@ -14,28 +14,26 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package v1
+package v1beta1
 
 import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-	"k8s.io/apimachinery/pkg/runtime"
 )
 
 // EDIT THIS FILE!  THIS IS SCAFFOLDING FOR YOU TO OWN!
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
 
-// MyDaemonsetSpec defines the desired state of MyDaemonset
-type MyDaemonsetSpec struct {
+// MyDaemonSetSpec defines the desired state of MyDaemonSet
+type MyDaemonSetSpec struct {
 	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
 
-	// Foo is an example field of MyDaemonset. Edit mydaemonset_types.go to remove/update
-	Image string `json:"image,omitempty"`
+	// Foo is an example field of MyDaemonSet. Edit mydaemonset_types.go to remove/update
+	Foo string `json:"foo,omitempty"`
 }
 
-// MyDaemonsetStatus defines the observed state of MyDaemonset
-type MyDaemonsetStatus struct {
-	AvaiableReplicas int `json:"avaiableReplicas,omitempty"`
+// MyDaemonSetStatus defines the observed state of MyDaemonSet
+type MyDaemonSetStatus struct {
 	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
 }
@@ -43,34 +41,24 @@ type MyDaemonsetStatus struct {
 //+kubebuilder:object:root=true
 //+kubebuilder:subresource:status
 
-// MyDaemonset is the Schema for the mydaemonsets API
-type MyDaemonset struct {
+// MyDaemonSet is the Schema for the mydaemonsets API
+type MyDaemonSet struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 
-	Spec   MyDaemonsetSpec   `json:"spec,omitempty"`
-	Status MyDaemonsetStatus `json:"status,omitempty"`
-}
-
-func (m MyDaemonset) DeepCopyObject() runtime.Object {
-	//TODO implement me
-	panic("implement me")
+	Spec   MyDaemonSetSpec   `json:"spec,omitempty"`
+	Status MyDaemonSetStatus `json:"status,omitempty"`
 }
 
 //+kubebuilder:object:root=true
 
-// MyDaemonsetList contains a list of MyDaemonset
-type MyDaemonsetList struct {
+// MyDaemonSetList contains a list of MyDaemonSet
+type MyDaemonSetList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []MyDaemonset `json:"items"`
-}
-
-func (m MyDaemonsetList) DeepCopyObject() runtime.Object {
-	//TODO implement me
-	panic("implement me")
+	Items           []MyDaemonSet `json:"items"`
 }
 
 func init() {
-	SchemeBuilder.Register(&MyDaemonset{}, &MyDaemonsetList{})
+	SchemeBuilder.Register(&MyDaemonSet{}, &MyDaemonSetList{})
 }

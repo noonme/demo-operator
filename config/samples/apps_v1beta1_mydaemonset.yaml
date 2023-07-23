@@ -1,5 +1,5 @@
-apiVersion: apps.opsblogs.cn/v1
-kind: MyDaemonset
+apiVersion: apps.opsblogs.cn/v1beta1
+kind: MyDaemonSet
 metadata:
   name: mydaemonset-sample
 spec:
