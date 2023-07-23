@@ -18,6 +18,7 @@ package main
 
 import (
 	"flag"
+	"github.com/noonme/demo-operator/controllers"
 	"os"
 
 	// Import all Kubernetes client auth plugins (e.g. Azure, GCP, OIDC, etc.)
@@ -32,7 +33,7 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
 
 	appsv1 "github.com/noonme/demo-operator/api/v1"
-	"github.com/noonme/demo-operator/controllers"
+	//"github.com/noonme/demo-operator/controllers"
 	//+kubebuilder:scaffold:imports
 )
 

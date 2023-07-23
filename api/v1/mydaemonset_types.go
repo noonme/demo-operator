@@ -18,6 +18,7 @@ package v1
 
 import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	"k8s.io/apimachinery/pkg/runtime"
 )
 
 // EDIT THIS FILE!  THIS IS SCAFFOLDING FOR YOU TO OWN!
@@ -29,11 +30,12 @@ type MyDaemonsetSpec struct {
 	// Important: Run "make" to regenerate code after modifying this file
 
 	// Foo is an example field of MyDaemonset. Edit mydaemonset_types.go to remove/update
-	Foo string `json:"foo,omitempty"`
+	Image string `json:"image,omitempty"`
 }
 
 // MyDaemonsetStatus defines the observed state of MyDaemonset
 type MyDaemonsetStatus struct {
+	AvaiableReplicas int `json:"avaiableReplicas,omitempty"`
 	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
 }
@@ -50,6 +52,11 @@ type MyDaemonset struct {
 	Status MyDaemonsetStatus `json:"status,omitempty"`
 }
 
+func (m MyDaemonset) DeepCopyObject() runtime.Object {
+	//TODO implement me
+	panic("implement me")
+}
+
 //+kubebuilder:object:root=true
 
 // MyDaemonsetList contains a list of MyDaemonset
@@ -57,6 +64,11 @@ type MyDaemonsetList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
 	Items           []MyDaemonset `json:"items"`
+}
+
+func (m MyDaemonsetList) DeepCopyObject() runtime.Object {
+	//TODO implement me
+	panic("implement me")
 }
 
 func init() {

@@ -1,4 +1,4 @@
-module example.com/m
+module github.com/noonme/demo-operator
 
 go 1.16
 
