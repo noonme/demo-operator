@@ -1,0 +1,24 @@
+# permissions for end users to edit mydemoes.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: mydemo-editor-role
+rules:
+- apiGroups:
+  - apps.opsblogs.cn
+  resources:
+  - mydemoes
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - apps.opsblogs.cn
+  resources:
+  - mydemoes/status
+  verbs:
+  - get

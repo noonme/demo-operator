@@ -1,0 +1,6 @@
+apiVersion: apps.opsblogs.cn/v1beta1
+kind: MyDemo
+metadata:
+  name: mydemo-sample
+spec:
+  # TODO(user): Add fields here
