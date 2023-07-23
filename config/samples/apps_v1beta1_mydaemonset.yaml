@@ -3,4 +3,4 @@ kind: MyDaemonSet
 metadata:
   name: mydaemonset-sample
 spec:
-  # TODO(user): Add fields here
+  image: nginx 
