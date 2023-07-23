@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package v1beta1
+package v1
 
 import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -23,18 +23,17 @@ import (
 // EDIT THIS FILE!  THIS IS SCAFFOLDING FOR YOU TO OWN!
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
 
-// MyDemoSpec defines the desired state of MyDemo
-type MyDemoSpec struct {
+// MyDaemonsetSpec defines the desired state of MyDaemonset
+type MyDaemonsetSpec struct {
 	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
 
-	// Foo is an example field of MyDemo. Edit mydemo_types.go to remove/update
-	Image string `json:"image,omitempty"`
+	// Foo is an example field of MyDaemonset. Edit mydaemonset_types.go to remove/update
+	Foo string `json:"foo,omitempty"`
 }
 
-// MyDemoStatus defines the observed state of MyDemo
-type MyDemoStatus struct {
-	AvaiableReplicas int `json:"avaiableReplicas,omitempty"`
+// MyDaemonsetStatus defines the observed state of MyDaemonset
+type MyDaemonsetStatus struct {
 	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
 }
@@ -42,24 +41,24 @@ type MyDemoStatus struct {
 //+kubebuilder:object:root=true
 //+kubebuilder:subresource:status
 
-// MyDemo is the Schema for the mydemoes API
-type MyDemo struct {
+// MyDaemonset is the Schema for the mydaemonsets API
+type MyDaemonset struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 
-	Spec   MyDemoSpec   `json:"spec,omitempty"`
-	Status MyDemoStatus `json:"status,omitempty"`
+	Spec   MyDaemonsetSpec   `json:"spec,omitempty"`
+	Status MyDaemonsetStatus `json:"status,omitempty"`
 }
 
 //+kubebuilder:object:root=true
 
-// MyDemoList contains a list of MyDemo
-type MyDemoList struct {
+// MyDaemonsetList contains a list of MyDaemonset
+type MyDaemonsetList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []MyDemo `json:"items"`
+	Items           []MyDaemonset `json:"items"`
 }
 
 func init() {
-	SchemeBuilder.Register(&MyDemo{}, &MyDemoList{})
+	SchemeBuilder.Register(&MyDaemonset{}, &MyDaemonsetList{})
 }
