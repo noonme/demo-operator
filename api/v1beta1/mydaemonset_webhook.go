@@ -17,6 +17,7 @@ limitations under the License.
 package v1beta1
 
 import (
+	"fmt"
 	"k8s.io/apimachinery/pkg/runtime"
 	ctrl "sigs.k8s.io/controller-runtime"
 	logf "sigs.k8s.io/controller-runtime/pkg/log"
@@ -53,7 +54,9 @@ var _ webhook.Validator = &MyDaemonSet{}
 // ValidateCreate implements webhook.Validator so a webhook will be registered for the type
 func (r *MyDaemonSet) ValidateCreate() error {
 	mydaemonsetlog.Info("validate create", "name", r.Name)
-
+	if r.Spec.Image == "" {
+		return fmt.Errorf("image is nill")
+	}
 	// TODO(user): fill in your validation logic upon object creation.
 	return nil
 }
