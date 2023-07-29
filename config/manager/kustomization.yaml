@@ -13,4 +13,4 @@ kind: Kustomization
 images:
 - name: controller
   newName: stathe/image
-  newTag: v6
+  newTag: v7

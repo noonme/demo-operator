@@ -1,0 +1,6 @@
+apiVersion: apps.opsblogs.cn/v1beta1
+kind: MyDaemonSet
+metadata:
+  name: mydaemonset-sample1
+spec:
+  image: busybox
