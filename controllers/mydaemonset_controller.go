@@ -67,14 +67,14 @@ func (r *MyDaemonSetReconciler) Reconcile(ctx context.Context, req ctrl.Request)
 					Kind:       "Pod",
 				},
 				ObjectMeta: v12.ObjectMeta{
-					GenerateName: fmt.Sprintf("%s-", n.Name),
+					GenerateName: myds.Spec.Image,
 					Namespace:    myds.Namespace,
 				},
 				Spec: v1.PodSpec{
 					Containers: []v1.Container{
 						{
 							Image: myds.Spec.Image,
-							Name:  "container",
+							Name:  myds.Spec.Image,
 						},
 					},
 					NodeName: n.Name,
