@@ -55,35 +55,36 @@ func (r *MyDaemonSetReconciler) Reconcile(ctx context.Context, req ctrl.Request)
 	if err := r.Client.Get(ctx, req.NamespacedName, myds); err != nil {
 		fmt.Println(err)
 	}
-	//nl := &v1.NodeList{}
+	nl := &v1.NodeList{}
 	if myds.Spec.Image != "" {
-		//if err := r.Client.List(ctx, nl); err != nil {
-		fmt.Println(panic)
-	}
-	//for _, n := range nl.Items {
-	p := v1.Pod{
-		TypeMeta: v12.TypeMeta{
-			APIVersion: "v1",
-			Kind:       "Pod",
-		},
-		ObjectMeta: v12.ObjectMeta{
-			GenerateName: myds.Spec.Image,
-			Namespace:    myds.Namespace,
-		},
-		Spec: v1.PodSpec{
-			Containers: []v1.Container{
-				{
-					Image: myds.Spec.Image,
-					Name:  myds.Spec.Image,
-				},
+		if err := r.Client.List(ctx, nl); err != nil {
+			fmt.Println(err)
+		}
+
+		//for _, n := range nl.Items {
+		p := v1.Pod{
+			TypeMeta: v12.TypeMeta{
+				APIVersion: "v1",
+				Kind:       "Pod",
 			},
-			//NodeName: n.Name,
-		},
+			ObjectMeta: v12.ObjectMeta{
+				GenerateName: myds.Spec.Image,
+				Namespace:    myds.Namespace,
+			},
+			Spec: v1.PodSpec{
+				Containers: []v1.Container{
+					{
+						Image: myds.Spec.Image,
+						Name:  myds.Spec.Image,
+					},
+				},
+				//NodeName: n.Name,
+			},
+		}
+		if err := r.Client.Create(ctx, &p); err != nil {
+			fmt.Println(err)
+		}
 	}
-	if err := r.Client.Create(ctx, &p); err != nil {
-		fmt.Println(err)
-	}
-	//}
 
 	return ctrl.Result{}, nil
 }
