@@ -2,5 +2,6 @@ apiVersion: apps.opsblogs.cn/v1beta1
 kind: MyDaemonSet
 metadata:
   name: mydaemonset-sample1
+  namespace: demo-operator-system
 spec:
-  image: busybox
+  image: nginx 
