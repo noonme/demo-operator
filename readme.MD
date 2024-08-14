@@ -103,5 +103,6 @@ kubebuilder create webhook --group apps --version v1beta1 --kind MyDaemonset --d
 make build
 make docker-build
 make docker-push
+kubectl create -f demo-operator/config/samples/roleAdd/*
 make deploy
 ```
