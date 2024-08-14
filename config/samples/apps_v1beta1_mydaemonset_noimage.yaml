@@ -4,4 +4,4 @@ metadata:
   name: mydaemonset-sample1
   namespace: demo-operator-system
 spec:
-  image: nginx 
+  image: '' 
